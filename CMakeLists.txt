@@ -8,7 +8,7 @@ cmake_minimum_required(VERSION 3.21)
 
 # [BEGIN set_project_name]
 # Set your project name. This will be the name of your SKSE .dll file.
-project(HelloWorld VERSION 0.0.1 LANGUAGES CXX)
+project(KeyLogger VERSION 0.0.1 LANGUAGES CXX)
 
 # [END set_project_name]
 
@@ -41,10 +41,14 @@ endif()
 find_package(CommonLibSSE CONFIG REQUIRED)
 add_commonlibsse_plugin(${PROJECT_NAME} SOURCES 
     src/main.cpp
+    src/KeyLogger.cpp
+    src/PapyrusRegistration.cpp
 ) # <--- specifies plugin.cpp
 target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_23) # <--- use C++23 standard
 target_precompile_headers(${PROJECT_NAME} PRIVATE 
     src/PCH.h
+    src/KeyLogger.h
+    src/PapyrusRegistration.h
 ) # <--- PCH.h is required!
 
 # When your SKSE .dll is compiled, this will automatically copy the .dll into your mods folder.
